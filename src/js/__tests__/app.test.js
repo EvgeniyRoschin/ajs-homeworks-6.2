@@ -1,18 +1,26 @@
 /* eslint-disable linebreak-style */
 import Character from '../app';
 
-test('correct data', () => {
-  const sample = new Character('fofofo', 'www');
-  sample.damage(100);
+test('Take damage', () => {
+  const example = new Character('Вася', 'Undead');
+  example.damage(10);
+  expect(example.health).toBe(94);
+});
 
-  const result = {
-    name: 'fofofo',
-    type: 'www',
-    health: 60,
-    attack: 10,
-    defence: 40,
-    damage: [Function],
-  };
+test('Take 0 damage', () => {
+  const example = new Character('Вася', 'Undead');
+  example.damage(0);
+  expect(example.health).toBe(100);
+});
 
-  expect(sample).toEqual(result);
+test('Heal', () => {
+  const example = new Character('Вася', 'Undead');
+  example.damage(-10);
+  expect(example.health).toBe(106);
+});
+
+test('Kill', () => {
+  const example = new Character('Вася', 'Undead');
+  example.damage(200);
+  expect(example.health).toBe(0);
 });
